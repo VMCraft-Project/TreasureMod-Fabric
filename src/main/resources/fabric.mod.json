@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "id": "vtmtreasure",
+  "version": "${version}",
+  "name": "VTM's Treasure",
+  "description": "VTMCraft's Treasure~",
+  "authors": [
+    {
+      "name": "VTMCraft",
+      "contact": {
+        "homepage": "https://github.com/VMCraft-Project",
+        "kook": "https://kook.top/8M10aI",
+        "qq": "688947666"
+      }
+    }
+  ],
+  "contact": {
+    "repo": "https://github.com/VMCraft-Project/TreasureMod-Fabric",
+    "homepage": "https://github.com/VMCraft-Project",
+    "issues": "https://github.com/VMCraft-Project/TreasureMod-Fabric/issues",
+    "sources": "https://github.com/VMCraft-Project/TreasureMod-Fabric.git",
+    "kook": "https://kook.top/8M10aI",
+    "qq": "688947666"
+  },
+  "license": "GPL-3.0-only",
+  "icon": "assets/vtmtreasure/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "client": [
+      "com.vtmcraft.treasure.client.VTMTreasureClient"
+    ],
+    "main": [
+      "com.vtmcraft.treasure.VTMTreasure"
+    ]
+  },
+  "mixins": [
+    "vtmtreasure.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}"
+  },
+  "suggests": {
+    "modmenu": "*"
+  },
+  "custom": {
+    "modmenu": {
+      "links": {
+        "vtmtreasure.kook": "https://kook.top/8M10aI"
+      }
+    }
+  }
+}

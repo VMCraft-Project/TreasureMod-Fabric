@@ -1,0 +1,20 @@
+{
+  "sabi": {
+    "subtitle": "subtitle.vtmtreasure.sabo",
+    "sounds": [
+      "vtmtreasure:sabi"
+    ]
+  },
+  "zako": {
+    "subtitle": "subtitle.vtmtreasure.zako",
+    "sounds": [
+      "vtmtreasure:zako"
+    ]
+  },
+  "kimo": {
+    "subtitle": "subtitle.vtmtreasure.kimo",
+    "sounds": [
+      "vtmtreasure:kimo"
+    ]
+  }
+}
