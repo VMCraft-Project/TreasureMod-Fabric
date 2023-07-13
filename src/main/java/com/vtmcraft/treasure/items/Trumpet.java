@@ -8,12 +8,11 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.sound.SoundCategory;
+import net.minecraft.stat.Stats;
 import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
-import net.minecraft.util.Hand;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.TypedActionResult;
+import net.minecraft.util.*;
 import net.minecraft.world.World;
+import net.minecraft.world.event.GameEvent;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -30,15 +29,18 @@ public class Trumpet extends Item {
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         var stack = user.getStackInHand(hand);
-        if (world.isClient) return TypedActionResult.success(stack);
 
         var trumpetRecord = getTrumpetType(stack);
         if (trumpetRecord == null) return TypedActionResult.fail(stack);
 
-        world.playSound(null, user.getBlockPos(), trumpetRecord.Sound(), SoundCategory.PLAYERS, 1.0f, 1.0f);
+        world.playSoundFromEntity(null, user, trumpetRecord.Sound(), SoundCategory.PLAYERS, 1.0f, 1.0f);
         user.getItemCooldownManager().set(this, trumpetRecord.CoolDownTime());
 
-        return TypedActionResult.success(user.getStackInHand(hand));
+        user.setCurrentHand(hand);
+        user.incrementStat(Stats.USED.getOrCreateStat(this));
+        world.emitGameEvent(GameEvent.INSTRUMENT_PLAY, user.getPos(), GameEvent.Emitter.of(user));
+
+        return TypedActionResult.consume(user.getStackInHand(hand));
     }
 
     @Override
@@ -47,6 +49,16 @@ public class Trumpet extends Item {
         if (key != null) {
             tooltip.add(Text.translatable(MOD_ID + ".trumpet." + key.getNamespace() + "." + key.getPath()).formatted(Formatting.DARK_GRAY));
         }
+    }
+
+    @Override
+    public int getMaxUseTime(ItemStack stack) {
+        return getTrumpetType(stack).CoolDownTime();
+    }
+
+    @Override
+    public UseAction getUseAction(ItemStack stack) {
+        return UseAction.TOOT_HORN;
     }
 
     private Identifier getTrumpetTypeKey(ItemStack stack) {

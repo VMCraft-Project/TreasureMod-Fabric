@@ -11,8 +11,6 @@ import net.minecraft.loot.entry.ItemEntry;
 import net.minecraft.loot.function.SetNbtLootFunction;
 import net.minecraft.loot.provider.number.ConstantLootNumberProvider;
 import net.minecraft.nbt.NbtCompound;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import static com.vtmcraft.treasure.items.Trumpet.TRUMPET_TYPE_NBT_KEY;
 
