@@ -19,10 +19,10 @@ import java.util.List;
 
 import static com.vtmcraft.treasure.VTMTreasure.MOD_ID;
 
-public class Trumpet extends Item {
+public class TrumpetItem extends Item {
     public static final String TRUMPET_TYPE_NBT_KEY = "trumpet_type";
 
-    public Trumpet() {
+    public TrumpetItem() {
         super(new FabricItemSettings().maxCount(1));
     }
 

@@ -20,11 +20,11 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class StrawberryMilk extends Item {
+public class StrawberryMilkItem extends Item {
     private static final int MAX_USE_TIME = 32;
     private static final int EFFECT_TIME = 1000;
 
-    public StrawberryMilk() {
+    public StrawberryMilkItem() {
         super(new FabricItemSettings().maxCount(1));
     }
 

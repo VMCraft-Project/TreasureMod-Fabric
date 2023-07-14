@@ -12,7 +12,7 @@ import net.minecraft.loot.function.SetNbtLootFunction;
 import net.minecraft.loot.provider.number.ConstantLootNumberProvider;
 import net.minecraft.nbt.NbtCompound;
 
-import static com.vtmcraft.treasure.items.Trumpet.TRUMPET_TYPE_NBT_KEY;
+import static com.vtmcraft.treasure.items.TrumpetItem.TRUMPET_TYPE_NBT_KEY;
 
 public class VTMTreasure implements ModInitializer {
     // public static final Logger LOGGER = LoggerFactory.getLogger("vtmtreasuremod");
@@ -28,13 +28,13 @@ public class VTMTreasure implements ModInitializer {
         VTMTreasureCommands.init();
 
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.TOOLS).register(content -> TrumpetRecords.getIds().forEach(identifier -> {
-            var stack = new ItemStack(VTMTreasureItems.TRUMPET);
+            var stack = new ItemStack(VTMTreasureItems.TRUMPET_ITEM);
             stack.getOrCreateNbt().putString(TRUMPET_TYPE_NBT_KEY, identifier.toString());
 
             content.addAfter(Items.TNT_MINECART, stack);
         }));
 
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.FOOD_AND_DRINK).register(content -> content.addAfter(Items.MILK_BUCKET, VTMTreasureItems.STRAWBERRY_MILK));
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.FOOD_AND_DRINK).register(content -> content.addAfter(Items.MILK_BUCKET, VTMTreasureItems.STRAWBERRY_MILK_ITEM));
 
         LootTableEvents.MODIFY.register((resourceManager, lootManager, id, table, setter) -> {
             if (id.getNamespace().equals("minecraft") & id.getPath().startsWith("chests/")){
@@ -42,13 +42,13 @@ public class VTMTreasure implements ModInitializer {
                         .rolls(ConstantLootNumberProvider.create(0.8f));
 
                 TrumpetRecords.getIds().forEach(identifier -> {
-                    var stack = new ItemStack(VTMTreasureItems.TRUMPET);
+                    var stack = new ItemStack(VTMTreasureItems.TRUMPET_ITEM);
                     stack.getOrCreateNbt().putString(TRUMPET_TYPE_NBT_KEY, identifier.toString());
 
                     var nbt = new NbtCompound();
                     nbt.putString(TRUMPET_TYPE_NBT_KEY, identifier.toString());
 
-                    builder.with(ItemEntry.builder(VTMTreasureItems.TRUMPET).apply(SetNbtLootFunction.builder(nbt)));
+                    builder.with(ItemEntry.builder(VTMTreasureItems.TRUMPET_ITEM).apply(SetNbtLootFunction.builder(nbt)));
                 });
 
                 table.pool(builder);

@@ -1,7 +1,7 @@
 package com.vtmcraft.treasure;
 
 import com.vtmcraft.treasure.commands.arguent.TrumpetTypeArgumentType;
-import com.vtmcraft.treasure.items.Trumpet;
+import com.vtmcraft.treasure.items.TrumpetItem;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.minecraft.command.argument.EntityArgumentType;
 import net.minecraft.item.ItemStack;
@@ -21,8 +21,8 @@ public class VTMTreasureCommands {
                                     var id = TrumpetTypeArgumentType.getIdentifier(context, "id");
 
                                     players.forEach(player -> {
-                                        var itemStack = new ItemStack(VTMTreasureItems.TRUMPET);
-                                        itemStack.getOrCreateNbt().putString(Trumpet.TRUMPET_TYPE_NBT_KEY, id.toString());
+                                        var itemStack = new ItemStack(VTMTreasureItems.TRUMPET_ITEM);
+                                        itemStack.getOrCreateNbt().putString(TrumpetItem.TRUMPET_TYPE_NBT_KEY, id.toString());
 
                                         player.getInventory().insertStack(itemStack);
                                         player.getWorld()
