@@ -31,7 +31,10 @@ public class Trumpet extends Item {
         var stack = user.getStackInHand(hand);
 
         var trumpetRecord = getTrumpetType(stack);
-        if (trumpetRecord == null) return TypedActionResult.fail(stack);
+        if (trumpetRecord == null) {
+            user.sendMessage(Text.translatable("item.vtmtreasure.trumpet.invalid.tooltip").formatted(Formatting.RED), true);
+            return TypedActionResult.fail(stack);
+        }
 
         world.playSoundFromEntity(null, user, trumpetRecord.Sound(), SoundCategory.PLAYERS, 1.0f, 1.0f);
         user.getItemCooldownManager().set(this, trumpetRecord.CoolDownTime());
@@ -45,6 +48,11 @@ public class Trumpet extends Item {
 
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
+        if (getTrumpetType(stack) == null) {
+            tooltip.add(Text.translatable("item.vtmtreasure.trumpet.invalid.tooltip").formatted(Formatting.RED));
+            return;
+        }
+
         var key = getTrumpetTypeKey(stack);
         if (key != null) {
             tooltip.add(Text.translatable(MOD_ID + ".trumpet." + key.getNamespace() + "." + key.getPath()).formatted(Formatting.DARK_GRAY));
@@ -53,7 +61,10 @@ public class Trumpet extends Item {
 
     @Override
     public int getMaxUseTime(ItemStack stack) {
-        return getTrumpetType(stack).CoolDownTime();
+        var trumpetType = getTrumpetType(stack);
+        if (trumpetType == null) return 0;
+
+        return trumpetType.CoolDownTime();
     }
 
     @Override
