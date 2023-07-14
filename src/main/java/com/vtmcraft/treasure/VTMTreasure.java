@@ -25,6 +25,7 @@ public class VTMTreasure implements ModInitializer {
         VTMTreasureItems.registerItems();
         VTMTreasureSoundEvents.registerSoundEvents();
         TrumpetRecords.init();
+        VTMTreasureCommands.init();
 
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.TOOLS).register(content -> TrumpetRecords.getIds().forEach(identifier -> {
             var stack = new ItemStack(VTMTreasureItems.TRUMPET);

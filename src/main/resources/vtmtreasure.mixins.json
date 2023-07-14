@@ -4,6 +4,7 @@
   "package": "com.vtmcraft.treasure.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
+    "ArgumentTypesMixin"
   ],
   "client": [
   ],
