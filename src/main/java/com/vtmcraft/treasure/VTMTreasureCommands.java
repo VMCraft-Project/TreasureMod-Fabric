@@ -2,17 +2,24 @@ package com.vtmcraft.treasure;
 
 import com.vtmcraft.treasure.commands.arguent.TrumpetTypeArgumentType;
 import com.vtmcraft.treasure.items.TrumpetItem;
+import net.fabricmc.fabric.api.command.v2.ArgumentTypeRegistry;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.minecraft.command.argument.EntityArgumentType;
+import net.minecraft.command.argument.serialize.ConstantArgumentSerializer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
+import net.minecraft.util.Identifier;
 
+import static com.vtmcraft.treasure.VTMTreasure.MOD_ID;
 import static net.minecraft.server.command.CommandManager.argument;
 import static net.minecraft.server.command.CommandManager.literal;
 
 public class VTMTreasureCommands {
     public static void init() {
+        ArgumentTypeRegistry.registerArgumentType(
+                new Identifier(MOD_ID, "trumpet_type"), TrumpetTypeArgumentType.class, ConstantArgumentSerializer.of(TrumpetTypeArgumentType::identifier));
+
         CommandRegistrationCallback.EVENT.register(((dispatcher, registryAccess, environment) ->
                 dispatcher.register(literal("getTrumpet").requires(source -> source.hasPermissionLevel(2))
                         .then(argument("targets", EntityArgumentType.players())

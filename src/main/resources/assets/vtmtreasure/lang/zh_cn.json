@@ -11,5 +11,6 @@
   "modmenu.nameTranslation.vtmtreasure": "VTMCraft 的宝藏",
   "modmenu.descriptionTranslation.vtmtreasure": "VTMCraft 的宝藏（大嘘",
   "item.vtmtreasure.trumpet": "喇叭",
-  "item.vtmtreasure.trumpet.invalid.tooltip": "无效的喇叭"
+  "item.vtmtreasure.trumpet.invalid.tooltip": "无效的喇叭",
+  "item.vtmtreasure.ex_stick": "EX 棒"
 }
