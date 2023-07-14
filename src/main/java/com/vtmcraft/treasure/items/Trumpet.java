@@ -61,6 +61,16 @@ public class Trumpet extends Item {
         return UseAction.TOOT_HORN;
     }
 
+    @Override
+    public boolean hasGlint(ItemStack stack) {
+        return true;
+    }
+
+    @Override
+    public boolean isEnchantable(ItemStack stack) {
+        return false;
+    }
+
     private Identifier getTrumpetTypeKey(ItemStack stack) {
         var nbt = stack.getNbt();
         if (nbt != null && nbt.contains(TRUMPET_TYPE_NBT_KEY)) {
